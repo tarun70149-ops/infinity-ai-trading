@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Infinity AI Trading</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #0b1120;
+            color: #ffffff;
+            min-height: 100vh;
+        }
+
+        header {
+            padding: 24px 8%;
+            border-bottom: 1px solid #263247;
+        }
+
+        header h1 {
+            color: #38bdf8;
+            font-size: 28px;
+        }
+
+        header p {
+            color: #94a3b8;
+            margin-top: 8px;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 70px auto;
+            padding: 20px;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .hero h2 {
+            font-size: 38px;
+            margin-bottom: 16px;
+        }
+
+        .hero span {
+            color: #38bdf8;
+        }
+
+        .hero p {
+            color: #94a3b8;
+            line-height: 1.7;
+        }
+
+        .card {
+            background: #111c30;
+            border: 1px solid #263247;
+            border-radius: 16px;
+            padding: 30px;
+        }
+
+        .card h3 {
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: #94a3b8;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 20px;
+            background: #0b1120;
+            color: white;
+            border: 1px solid #334155;
+            border-radius: 8px;
+        }
+
+        button {
+            padding: 13px 22px;
+            background: #0284c7;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        button:hover {
+            background: #0369a1;
+        }
+
+        #status {
+            margin-top: 18px;
+            color: #38bdf8;
+            overflow-wrap: anywhere;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #64748b;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>INFINITY AI TRADING</h1>
+        <p>AI-Assisted Technical Market Analysis</p>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h2>Welcome to <span>Infinity AI</span></h2>
+            <p>
+                Upload your TradingView chart and prepare
+                structured market analysis reports.
+            </p>
+        </section>
+
+        <section class="card">
+            <h3>📊 Chart Analysis Workspace</h3>
+
+            <p>
+                Select a TradingView screenshot to begin.
+                AI analysis will be integrated in a later step.
+            </p>
+
+            <input
+                type="file"
+                id="chartFile"
+                accept="image/*"
+            >
+
+            <button onclick="previewChart()">
+                Upload Chart
+            </button>
+
+            <p id="status"></p>
+
+            <img
+                id="preview"
+                alt="Selected chart preview"
+                style="display:none; max-width:100%; margin-top:20px; border-radius:8px;"
+            >
+        </section>
+    </main>
+
+    <footer>
+        INFINITY AI TRADING · Version 1.0
+    </footer>
+
+    <script>
+        function previewChart() {
+            const input = document.getElementById("chartFile");
+            const status = document.getElementById("status");
+            const preview = document.getElementById("preview");
+
+            const file = input.files[0];
+
+            if (!file) {
+                status.textContent = "Please select a chart screenshot first.";
+                preview.style.display = "none";
+                return;
+            }
+
+            if (!file.type.startsWith("image/")) {
+                status.textContent = "Please select a valid image.";
+                preview.style.display = "none";
+                return;
+            }
+
+            preview.src = URL.createObjectURL(file);
+            preview.style.display = "block";
+
+            status.textContent =
+                "Chart selected successfully: " + file.name +
+                ". AI analysis is not connected yet.";
+        }
+    </script>
+
+</body>
+</html>
