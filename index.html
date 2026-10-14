@@ -3,235 +3,276 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Infinity AI Trading</title>
+<title>INFINITY AI TRADING | V3</title>
 
 <style>
 :root {
-    --bg: #080d19;
-    --panel: #111a2b;
-    --border: #263650;
-    --text: #f1f5f9;
-    --muted: #94a3b8;
-    --blue: #38bdf8;
-    --green: #34d399;
-    --red: #fb7185;
+  --bg:#080d19;
+  --panel:#111a2b;
+  --border:#293750;
+  --text:#f1f5f9;
+  --muted:#9baac0;
+  --blue:#38bdf8;
+  --green:#34d399;
+  --red:#fb7185;
+  --amber:#fbbf24;
 }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+* { box-sizing:border-box; }
 
 body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: Arial, sans-serif;
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
 }
 
 header {
-    padding: 22px 5%;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 15px;
+  padding:22px 5%;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
 }
 
 .logo {
-    color: var(--blue);
-    font-size: 25px;
-    font-weight: bold;
+  font-size:24px;
+  font-weight:bold;
+  color:var(--blue);
 }
 
 .subtitle {
-    color: var(--muted);
-    font-size: 13px;
-    margin-top: 6px;
+  color:var(--muted);
+  font-size:13px;
+  margin-top:6px;
 }
 
 .badge {
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 9px 13px;
-    color: var(--green);
-    font-size: 12px;
+  padding:9px 13px;
+  border:1px solid var(--border);
+  border-radius:20px;
+  color:var(--green);
+  font-size:12px;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 35px auto;
-    padding: 0 20px;
+main {
+  max-width:1250px;
+  margin:35px auto;
+  padding:0 20px;
 }
 
-h1 {
-    font-size: 30px;
-    margin-bottom: 10px;
-}
+h1 { margin-bottom:10px; }
 
-.description {
-    color: var(--muted);
-    line-height: 1.6;
-    margin-bottom: 28px;
-}
-
-.grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+.muted {
+  color:var(--muted);
+  line-height:1.6;
 }
 
 .card {
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 24px;
-    margin-bottom: 20px;
-    min-width: 0;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:22px;
+  margin-bottom:20px;
+  min-width:0;
 }
 
 .card h2 {
-    font-size: 19px;
-    margin-bottom: 18px;
+  font-size:18px;
+  margin:0 0 18px;
+}
+
+.grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+
+input,select,textarea {
+  width:100%;
+  padding:12px;
+  background:var(--bg);
+  color:var(--text);
+  border:1px solid var(--border);
+  border-radius:8px;
+  margin-top:8px;
 }
 
 label {
-    display: block;
-    color: var(--muted);
-    margin: 16px 0 8px;
-    font-size: 13px;
-}
-
-input, select, textarea {
-    width: 100%;
-    padding: 12px;
-    background: var(--bg);
-    color: var(--text);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-}
-
-input[type="file"] {
-    font-size: 13px;
+  display:block;
+  color:var(--muted);
+  font-size:13px;
+  margin-top:15px;
 }
 
 button {
-    border: 0;
-    border-radius: 8px;
-    padding: 12px 16px;
-    cursor: pointer;
-    font-weight: bold;
-    margin-top: 15px;
+  border:0;
+  border-radius:8px;
+  padding:12px 15px;
+  margin-top:14px;
+  cursor:pointer;
+  font-weight:bold;
 }
 
-.primary {
-    background: #0284c7;
-    color: white;
-}
+.primary { background:#0284c7;color:white; }
+.secondary { background:#263650;color:white; }
 
-.secondary {
-    background: #263650;
-    color: white;
-}
-
-button:hover {
-    opacity: .88;
-}
-
-#preview {
-    width: 100%;
-    max-height: 350px;
-    object-fit: contain;
-    margin-top: 18px;
-    border-radius: 8px;
-    display: none;
-    background: var(--bg);
-}
+button:hover { opacity:.88; }
 
 .status {
-    color: var(--blue);
-    font-size: 13px;
-    margin-top: 14px;
-    line-height: 1.5;
-    overflow-wrap: anywhere;
+  margin-top:12px;
+  color:var(--blue);
+  font-size:13px;
+  line-height:1.5;
+  overflow-wrap:anywhere;
 }
 
 .notice {
-    border: 1px solid #854d0e;
-    background: #422006;
-    color: #fde68a;
-    border-radius: 9px;
-    padding: 14px;
-    line-height: 1.6;
-    font-size: 13px;
-    margin-bottom: 20px;
-}
-
-.metric {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    padding: 16px;
-    border-radius: 10px;
-}
-
-.metric small {
-    color: var(--muted);
-}
-
-.metric strong {
-    display: block;
-    font-size: 19px;
-    margin-top: 9px;
+  background:#422006;
+  color:#fde68a;
+  border:1px solid #854d0e;
+  padding:14px;
+  border-radius:9px;
+  margin:20px 0;
+  font-size:13px;
+  line-height:1.6;
 }
 
 .metrics {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:12px;
 }
 
-#reportOutput {
-    white-space: pre-wrap;
-    line-height: 1.7;
-    color: var(--muted);
-    overflow-wrap: anywhere;
+.metric {
+  background:var(--bg);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:16px;
+  min-width:0;
+}
+
+.metric small {
+  display:block;
+  color:var(--muted);
+  font-size:12px;
+}
+
+.metric strong {
+  display:block;
+  margin-top:10px;
+  font-size:19px;
+  overflow-wrap:anywhere;
+}
+
+.decision {
+  display:inline-block;
+  background:#422006;
+  color:var(--amber);
+  border:1px solid #854d0e;
+  padding:9px 13px;
+  border-radius:8px;
+  font-weight:bold;
+  font-size:13px;
+}
+
+table {
+  width:100%;
+  border-collapse:collapse;
+  font-size:13px;
+}
+
+th,td {
+  padding:12px 10px;
+  text-align:left;
+  border-bottom:1px solid var(--border);
+  overflow-wrap:anywhere;
+}
+
+th { color:var(--muted); }
+
+.table-wrap { overflow-x:auto; }
+
+.support { color:var(--green); }
+.resistance { color:var(--red); }
+
+.scenario-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+}
+
+.scenario {
+  background:var(--bg);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:18px;
+  line-height:1.7;
+  overflow-wrap:anywhere;
+}
+
+.scenario h3 { margin-top:0; }
+.bull h3 { color:var(--green); }
+.bear h3 { color:var(--red); }
+
+#chartPreview {
+  display:none;
+  max-width:100%;
+  max-height:350px;
+  margin-top:16px;
+  border-radius:8px;
+}
+
+#reportSummary {
+  font-size:15px;
+  line-height:1.8;
+  overflow-wrap:anywhere;
 }
 
 .history-item {
-    border-bottom: 1px solid var(--border);
-    padding: 13px 0;
-    line-height: 1.6;
+  padding:13px 0;
+  border-bottom:1px solid var(--border);
 }
 
-.history-item button {
-    margin-top: 5px;
+.history-item small {
+  display:block;
+  color:var(--muted);
+  margin-top:5px;
 }
 
 footer {
-    text-align: center;
-    color: var(--muted);
-    padding: 30px 15px;
-    font-size: 12px;
+  text-align:center;
+  padding:30px 15px;
+  color:var(--muted);
+  font-size:12px;
 }
 
-@media (max-width: 750px) {
-    .grid {
-        grid-template-columns: 1fr;
-    }
+@media(max-width:800px) {
+  .grid,.scenario-grid { grid-template-columns:1fr; }
+  .metrics { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  header { align-items:flex-start;flex-direction:column; }
+}
 
-    header {
-        align-items: flex-start;
-        flex-direction: column;
-    }
+@media(max-width:420px) {
+  .metrics { grid-template-columns:1fr; }
+}
 
-    .metrics {
-        grid-template-columns: 1fr;
-    }
-
-    h1 {
-        font-size: 25px;
-    }
+/* Report-only layout for printing to PDF */
+@media print {
+  body { background:white!important;color:#111!important; }
+  header,.no-print,footer { display:none!important; }
+  main { margin:0;padding:0;max-width:none; }
+  .card,.metric,.scenario {
+    background:white!important;
+    color:#111!important;
+    border:1px solid #bbb!important;
+    break-inside:avoid;
+  }
+  .muted,th { color:#444!important; }
+  .decision { color:#111!important;background:#eee!important; }
+  th,td { border-bottom:1px solid #ccc!important; }
+  .support,.resistance,.bull h3,.bear h3 { color:#111!important; }
 }
 </style>
 </head>
@@ -239,425 +280,553 @@ footer {
 <body>
 
 <header>
-    <div>
-        <div class="logo">INFINITY AI TRADING</div>
-        <div class="subtitle">AI-Assisted Technical Market Analysis</div>
-    </div>
-    <div class="badge">● PROTOTYPE V2</div>
+  <div>
+    <div class="logo">INFINITY AI TRADING</div>
+    <div class="subtitle">AI-Assisted Technical Market Analysis</div>
+  </div>
+  <div class="badge">● DASHBOARD V3</div>
 </header>
 
-<main class="container">
+<main>
+  <h1>Trading Analysis Workspace</h1>
+  <p class="muted">
+    Import a completed ChatGPT JSON report to display a structured
+    market analysis dashboard.
+  </p>
 
-    <h1>Trading Analysis Workspace</h1>
-    <p class="description">
-        Upload your TradingView screenshot, organize your chart
-        details, and import a completed AI analysis report.
+  <div class="notice">
+    <strong>Prototype:</strong> This website does not automatically
+    analyze charts or access live prices. Report levels are estimates
+    from the imported analysis, not guaranteed trading signals.
+  </div>
+
+  <div class="grid no-print">
+    <section class="card">
+      <h2>📸 Chart Upload</h2>
+
+      <label for="chartFile">TradingView screenshot</label>
+      <input id="chartFile" type="file" accept="image/*">
+
+      <label for="instrument">Instrument</label>
+      <select id="instrument">
+        <option value="EURUSD">EUR/USD</option>
+        <option value="GBPUSD">GBP/USD</option>
+        <option value="USDJPY">USD/JPY</option>
+        <option value="XAUUSD">Gold</option>
+        <option value="BTCUSD">Bitcoin</option>
+        <option value="OTHER">Other</option>
+      </select>
+
+      <label for="timeframe">Timeframe</label>
+      <select id="timeframe">
+        <option>1m</option>
+        <option>5m</option>
+        <option>15m</option>
+        <option>30m</option>
+        <option selected>45m</option>
+        <option>1h</option>
+        <option>4h</option>
+        <option>1D</option>
+      </select>
+
+      <button class="primary" id="previewButton">Preview Chart</button>
+      <div id="uploadStatus" class="status" aria-live="polite"></div>
+      <img id="chartPreview" alt="TradingView chart preview">
+    </section>
+
+    <section class="card">
+      <h2>📥 Import Analysis</h2>
+      <p class="muted">
+        Upload the JSON file returned by ChatGPT.
+      </p>
+
+      <label for="jsonFile">Analysis JSON file</label>
+      <input id="jsonFile" type="file" accept=".json,application/json">
+
+      <button class="primary" id="importButton">Import JSON Report</button>
+      <button class="secondary" id="exportButton">Export JSON</button>
+      <button class="secondary" id="pdfButton">Save Report as PDF</button>
+
+      <div id="importStatus" class="status" aria-live="polite"></div>
+    </section>
+  </div>
+
+  <section class="card">
+    <h2>📊 Market Overview</h2>
+
+    <div class="metrics">
+      <div class="metric">
+        <small>Instrument</small>
+        <strong id="mInstrument">—</strong>
+      </div>
+      <div class="metric">
+        <small>Timeframe</small>
+        <strong id="mTimeframe">—</strong>
+      </div>
+      <div class="metric">
+        <small>Displayed Price</small>
+        <strong id="mPrice">—</strong>
+      </div>
+      <div class="metric">
+        <small>Market Trend</small>
+        <strong id="mTrend">—</strong>
+      </div>
+    </div>
+
+    <div style="margin-top:22px">
+      <div class="muted" style="margin-bottom:9px">AI Decision</div>
+      <span class="decision" id="decisionBadge">NO REPORT IMPORTED</span>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>🧭 Market Structure & Indicators</h2>
+    <p class="muted" id="structureText">Import a JSON report to display observations.</p>
+    <div class="table-wrap" style="margin-top:16px">
+      <table>
+        <thead>
+          <tr><th>Indicator</th><th>Visible Value</th><th>Observation</th></tr>
+        </thead>
+        <tbody id="indicatorRows">
+          <tr><td colspan="3">No report imported.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="grid">
+    <section class="card">
+      <h2 class="support">🟢 Potential Support Zones</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Price Zone</th><th>Basis</th></tr></thead>
+          <tbody id="supportRows">
+            <tr><td colspan="2">No report imported.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 class="resistance">🔴 Potential Resistance Zones</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Price Zone</th><th>Basis</th></tr></thead>
+          <tbody id="resistanceRows">
+            <tr><td colspan="2">No report imported.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <section class="card">
+    <h2>🎯 Bullish & Bearish Scenarios</h2>
+    <div class="scenario-grid">
+      <div class="scenario bull">
+        <h3>🟢 Bullish Scenario</h3>
+        <p><strong>Confirmation</strong></p>
+        <p id="bullConfirmation">—</p>
+        <p style="margin-top:12px"><strong>Invalidation</strong></p>
+        <p id="bullInvalidation">—</p>
+      </div>
+
+      <div class="scenario bear">
+        <h3>🔴 Bearish Scenario</h3>
+        <p><strong>Confirmation</strong></p>
+        <p id="bearConfirmation">—</p>
+        <p style="margin-top:12px"><strong>Invalidation</strong></p>
+        <p id="bearInvalidation">—</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>⚖️ Trade Setup & Risk</h2>
+    <div class="metrics">
+      <div class="metric"><small>Entry</small><strong id="entryValue">—</strong></div>
+      <div class="metric"><small>Stop Loss</small><strong id="slValue">—</strong></div>
+      <div class="metric"><small>Take Profit</small><strong id="tpValue">—</strong></div>
+      <div class="metric"><small>Risk/Reward</small><strong id="rrValue">—</strong></div>
+    </div>
+    <p class="muted" style="margin-top:16px">
+      Risk status: <strong id="riskValue">Unknown</strong>
     </p>
+    <p id="riskText" class="muted"></p>
+  </section>
 
-    <div class="notice">
-        <strong>Prototype mode:</strong>
-        This website does not connect to a live market feed or AI
-        model yet. Uploading a screenshot does not automatically
-        analyze the market. Never treat an unverified report as a trade signal.
-    </div>
+  <section class="card">
+    <h2>📝 Analysis Summary</h2>
+    <p id="reportSummary" class="muted">
+      No report imported yet.
+    </p>
+    <p id="qualityText" class="muted" style="margin-top:15px"></p>
+  </section>
 
-    <div class="grid">
-
-        <section class="card">
-            <h2>📸 Chart Upload</h2>
-
-            <label for="chartFile">Select TradingView screenshot</label>
-            <input id="chartFile" type="file" accept="image/*">
-
-            <label for="instrument">Instrument</label>
-            <select id="instrument">
-                <option value="EURUSD">EUR/USD</option>
-                <option value="GBPUSD">GBP/USD</option>
-                <option value="USDJPY">USD/JPY</option>
-                <option value="XAUUSD">Gold (XAU/USD)</option>
-                <option value="BTCUSD">Bitcoin (BTC/USD)</option>
-                <option value="OTHER">Other</option>
-            </select>
-
-            <label for="timeframe">Chart timeframe</label>
-            <select id="timeframe">
-                <option value="1m">1 minute</option>
-                <option value="5m">5 minutes</option>
-                <option value="15m">15 minutes</option>
-                <option value="30m">30 minutes</option>
-                <option value="45m" selected>45 minutes</option>
-                <option value="1h">1 hour</option>
-                <option value="4h">4 hours</option>
-                <option value="1D">1 day</option>
-            </select>
-
-            <button class="primary" id="previewButton">
-                Preview Chart
-            </button>
-
-            <div id="uploadStatus" class="status" aria-live="polite"></div>
-
-            <img id="preview" alt="Selected TradingView chart preview">
-        </section>
-
-        <section class="card">
-            <h2>📊 Analysis Overview</h2>
-
-            <div class="metrics">
-                <div class="metric">
-                    <small>Instrument</small>
-                    <strong id="metricInstrument">EUR/USD</strong>
-                </div>
-
-                <div class="metric">
-                    <small>Timeframe</small>
-                    <strong id="metricTimeframe">45m</strong>
-                </div>
-
-                <div class="metric">
-                    <small>Decision</small>
-                    <strong style="color:var(--muted)">Not analyzed</strong>
-                </div>
-            </div>
-
-            <label for="analysisJson">Import completed AI report (JSON)</label>
-            <input id="analysisJson" type="file" accept=".json,application/json">
-
-            <button class="primary" id="importButton">
-                Import JSON Report
-            </button>
-
-            <button class="secondary" id="downloadJsonButton">
-                Export Current Report
-            </button>
-
-            <button class="secondary" id="downloadPdfButton">
-                Print / Save as PDF
-            </button>
-
-            <div id="reportStatus" class="status" aria-live="polite"></div>
-        </section>
-
-    </div>
-
-    <section class="card">
-        <h2>🧠 Analysis Report</h2>
-        <div id="reportOutput">
-            No analysis report imported yet.
-
-            Once a completed report is imported, its contents
-            will appear here.
-        </div>
-    </section>
-
-    <section class="card">
-        <h2>🕘 Recent Analysis History</h2>
-        <p class="description">
-            Reports saved in this browser on this device.
-        </p>
-        <div id="historyOutput"></div>
-        <button class="secondary" id="clearHistoryButton">
-            Clear Local History
-        </button>
-    </section>
-
+  <section class="card no-print">
+    <h2>🕘 Recent Analysis History</h2>
+    <p class="muted">
+      Saved in this browser only. History is not automatically
+      synchronized across devices.
+    </p>
+    <div id="historyRows" style="margin-top:15px"></div>
+    <button class="secondary" id="clearHistoryButton">Clear Local History</button>
+  </section>
 </main>
 
 <footer>
-    INFINITY AI TRADING · Educational prototype ·
-    Not a live trading or execution system
+  INFINITY AI TRADING · Educational prototype · No live trade execution
 </footer>
 
 <script>
 "use strict";
 
-let currentReport = null;
-let currentImageUrl = null;
-
 const $ = id => document.getElementById(id);
+let currentReport = null;
+let previewUrl = null;
 
-function updateOverview() {
-    $("metricInstrument").textContent = $("instrument").value;
-    $("metricTimeframe").textContent = $("timeframe").value;
+function text(value, fallback = "—") {
+  if (value === null || value === undefined || value === "") {
+    return fallback;
+  }
+  if (typeof value === "object") return JSON.stringify(value);
+  return String(value);
 }
 
-$("instrument").addEventListener("change", updateOverview);
-$("timeframe").addEventListener("change", updateOverview);
+function setText(id, value, fallback = "—") {
+  $(id).textContent = text(value, fallback);
+}
 
-$("previewButton").addEventListener("click", () => {
-    const file = $("chartFile").files[0];
+function formatPrice(value) {
+  if (typeof value === "number" && Number.isFinite(value)) {
+    return value.toFixed(5);
+  }
+  return text(value);
+}
 
-    if (!file) {
-        $("uploadStatus").textContent =
-            "Please select a chart screenshot first.";
-        return;
+function clearRows(id, message, columns = 2) {
+  const row = document.createElement("tr");
+  const cell = document.createElement("td");
+  cell.colSpan = columns;
+  cell.textContent = message;
+  row.appendChild(cell);
+  $(id).replaceChildren(row);
+}
+
+function renderZones(id, zones) {
+  const body = $(id);
+  body.replaceChildren();
+
+  if (!Array.isArray(zones) || zones.length === 0) {
+    clearRows(id, "No zones available in this report.");
+    return;
+  }
+
+  zones.forEach(item => {
+    const row = document.createElement("tr");
+    const zoneCell = document.createElement("td");
+    const basisCell = document.createElement("td");
+
+    const zone = Array.isArray(item.zone) ? item.zone : null;
+
+    if (zone && zone.length >= 2) {
+      zoneCell.textContent =
+        formatPrice(zone[0]) + " – " + formatPrice(zone[1]);
+    } else if (
+      typeof item.low === "number" &&
+      typeof item.high === "number"
+    ) {
+      zoneCell.textContent =
+        formatPrice(item.low) + " – " + formatPrice(item.high);
+    } else {
+      zoneCell.textContent = text(item.zone, "Unspecified zone");
     }
 
-    if (!file.type.startsWith("image/")) {
-        $("uploadStatus").textContent =
-            "Please select a valid image file.";
-        return;
-    }
+    basisCell.textContent = text(
+      item.basis || item.strength || item.type,
+      "No explanation provided"
+    );
 
-    if (file.size > 10 * 1024 * 1024) {
-        $("uploadStatus").textContent =
-            "Please select an image smaller than 10 MB.";
-        return;
-    }
+    row.append(zoneCell, basisCell);
+    body.appendChild(row);
+  });
+}
 
-    if (currentImageUrl) {
-        URL.revokeObjectURL(currentImageUrl);
-    }
+function renderIndicators(indicators) {
+  const body = $("indicatorRows");
+  body.replaceChildren();
 
-    currentImageUrl = URL.createObjectURL(file);
-    $("preview").src = currentImageUrl;
-    $("preview").style.display = "block";
+  if (!Array.isArray(indicators) || !indicators.length) {
+    clearRows("indicatorRows", "No indicators available.", 3);
+    return;
+  }
 
-    $("uploadStatus").textContent =
-        "Preview ready: " + file.name +
-        ". This image has not been analyzed by AI.";
+  indicators.forEach(item => {
+    const row = document.createElement("tr");
+    const name = document.createElement("td");
+    const value = document.createElement("td");
+    const observation = document.createElement("td");
 
-    updateOverview();
-});
+    name.textContent = text(item.name);
+    value.textContent = formatPrice(item.visible_value);
+    observation.textContent = text(item.observation);
+
+    row.append(name, value, observation);
+    body.appendChild(row);
+  });
+}
 
 function validateReport(report) {
-    if (!report || typeof report !== "object" || Array.isArray(report)) {
-        throw new Error("JSON must contain one report object.");
+  if (!report || typeof report !== "object" || Array.isArray(report)) {
+    throw new Error("The JSON root must be an object.");
+  }
+
+  if (!report.analysis || typeof report.analysis !== "object") {
+    throw new Error("The analysis section is missing.");
+  }
+
+  const allowed = [
+    "BULLISH_BIAS",
+    "BEARISH_BIAS",
+    "WAIT_FOR_CONFIRMATION",
+    "INSUFFICIENT_DATA"
+  ];
+
+  if (
+    report.analysis.decision &&
+    !allowed.includes(report.analysis.decision)
+  ) {
+    throw new Error("Unknown decision label.");
+  }
+
+  for (const key of ["support_zones", "resistance_zones", "indicators"]) {
+    if (report[key] !== undefined && !Array.isArray(report[key])) {
+      throw new Error(key + " must be an array.");
     }
+  }
 
-    if (!report.analysis || typeof report.analysis !== "object") {
-        throw new Error("Required analysis section is missing.");
-    }
-
-    const allowed = [
-        "BULLISH_BIAS",
-        "BEARISH_BIAS",
-        "WAIT_FOR_CONFIRMATION",
-        "INSUFFICIENT_DATA"
-    ];
-
-    if (
-        report.analysis.decision &&
-        !allowed.includes(report.analysis.decision)
-    ) {
-        throw new Error("Unknown decision label.");
-    }
-
-    for (const key of ["support_zones", "resistance_zones", "indicators"]) {
-        if (report[key] !== undefined && !Array.isArray(report[key])) {
-            throw new Error(key + " must be an array.");
-        }
-    }
-
-    return true;
+  return true;
 }
 
-function displayReport(report) {
-    const safeText = JSON.stringify(report, null, 2);
-    $("reportOutput").textContent = safeText;
+function renderReport(report) {
+  const a = report.analysis || {};
+  const structure = report.market_structure || {};
+  const scenarios = report.scenarios || {};
+  const bullish = scenarios.bullish || {};
+  const bearish = scenarios.bearish || {};
+  const setup = report.trade_setup || {};
+  const risk = report.risk_assessment || {};
+  const quality = report.data_quality || {};
 
-    const decision = report.analysis?.decision || "Not specified";
-    const instrument = report.analysis?.instrument || "Unknown";
-    const timeframe = report.analysis?.timeframe || "Unknown";
+  setText("mInstrument", a.instrument);
+  setText("mTimeframe", a.timeframe);
+  setText("mPrice", formatPrice(a.displayed_price));
+  setText("mTrend", a.market_trend || structure.trend);
 
-    $("metricInstrument").textContent = instrument;
-    $("metricTimeframe").textContent = timeframe;
+  setText("decisionBadge", a.decision, "INSUFFICIENT_DATA");
+  setText(
+    "structureText",
+    Array.isArray(structure.observations)
+      ? structure.observations.join(" ")
+      : structure.trend
+  );
 
-    const decisionElement = $("metricInstrument")
-        .parentElement.parentElement.children[2].querySelector("strong");
+  renderIndicators(report.indicators);
+  renderZones("supportRows", report.support_zones);
+  renderZones("resistanceRows", report.resistance_zones);
 
-    decisionElement.textContent = decision;
+  setText("bullConfirmation", bullish.confirmation);
+  setText("bullInvalidation", bullish.invalidation);
+  setText("bearConfirmation", bearish.confirmation);
+  setText("bearInvalidation", bearish.invalidation);
 
-    currentReport = report;
+  setText("entryValue", setup.entry);
+  setText("slValue", setup.stop_loss);
+  setText("tpValue", setup.take_profit);
+  setText("rrValue", setup.risk_reward_ratio);
+  setText("riskValue", risk.risk_level);
+  setText(
+    "riskText",
+    Array.isArray(risk.uncertainties)
+      ? risk.uncertainties.join(" • ")
+      : risk.uncertainties
+  );
+
+  setText("reportSummary", report.summary);
+  setText(
+    "qualityText",
+    "Data status: " + text(quality.status, "UNVERIFIED") +
+    " · Latest candle complete: " +
+    text(quality.latest_candle_complete, "Unknown") +
+    " · Live data verified: " +
+    text(quality.live_data_verified, "Unknown")
+  );
+
+  currentReport = report;
 }
 
-$("importButton").addEventListener("click", async () => {
-    const file = $("analysisJson").files[0];
-
-    if (!file) {
-        $("reportStatus").textContent = "Please select a JSON file.";
-        return;
-    }
-
-    if (file.size > 1024 * 1024) {
-        $("reportStatus").textContent = "JSON file must be smaller than 1 MB.";
-        return;
-    }
-
-    try {
-        const report = JSON.parse(await file.text());
-        validateReport(report);
-        displayReport(report);
-        saveToHistory(report);
-
-        $("reportStatus").textContent =
-            "JSON imported and basic structure checks passed.";
-    } catch (error) {
-        $("reportStatus").textContent =
-            "Import failed: " + error.message;
-    }
-});
-
-$("downloadJsonButton").addEventListener("click", () => {
-    if (!currentReport) {
-        $("reportStatus").textContent =
-            "Import an AI report before exporting JSON.";
-        return;
-    }
-
-    downloadFile(
-        JSON.stringify(currentReport, null, 2),
-        "infinity-trading-report.json",
-        "application/json"
+function readHistory() {
+  try {
+    const data = JSON.parse(
+      localStorage.getItem("infinityTradingHistory") || "[]"
     );
-});
-
-function downloadFile(content, filename, mimeType) {
-    const blob = new Blob([content], { type: mimeType });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-
-    a.href = url;
-    a.download = filename;
-    a.click();
-
-    setTimeout(() => URL.revokeObjectURL(url), 1000);
+    return Array.isArray(data) ? data : [];
+  } catch {
+    return [];
+  }
 }
 
-$("downloadPdfButton").addEventListener("click", () => {
-    if (!currentReport) {
-        $("reportStatus").textContent =
-            "Import a completed report before creating a PDF.";
-        return;
-    }
+function saveHistory(report) {
+  try {
+    const history = readHistory();
+    history.unshift({
+      date: new Date().toISOString(),
+      report: report
+    });
 
-    window.print();
-});
+    localStorage.setItem(
+      "infinityTradingHistory",
+      JSON.stringify(history.slice(0, 20))
+    );
 
-function saveToHistory(report) {
-    try {
-        let history = JSON.parse(
-            localStorage.getItem("infinityTradingHistory") || "[]"
-        );
-
-        history.unshift({
-            date: new Date().toISOString(),
-            report: report
-        });
-
-        history = history.slice(0, 20);
-
-        localStorage.setItem(
-            "infinityTradingHistory",
-            JSON.stringify(history)
-        );
-
-        renderHistory();
-    } catch (error) {
-        $("reportStatus").textContent =
-            "Report loaded, but browser history could not be saved.";
-    }
+    renderHistory();
+  } catch {
+    $("importStatus").textContent =
+      "Report loaded, but browser history could not be saved.";
+  }
 }
 
 function renderHistory() {
-    const output = $("historyOutput");
+  const container = $("historyRows");
+  container.replaceChildren();
 
-    try {
-        const history = JSON.parse(
-            localStorage.getItem("infinityTradingHistory") || "[]"
-        );
+  const history = readHistory();
 
-        output.replaceChildren();
+  if (!history.length) {
+    container.textContent = "No saved reports yet.";
+    return;
+  }
 
-        if (!history.length) {
-            output.textContent = "No saved reports yet.";
-            return;
-        }
+  history.forEach((item, index) => {
+    const div = document.createElement("div");
+    div.className = "history-item";
 
-        history.forEach((item, index) => {
-            const div = document.createElement("div");
-            div.className = "history-item";
+    const title = document.createElement("strong");
+    title.textContent =
+      text(item.report?.analysis?.instrument, "Unknown instrument") +
+      " · " +
+      text(item.report?.analysis?.decision, "No decision");
 
-            const instrument =
-                item.report.analysis?.instrument || "Unknown instrument";
+    const date = document.createElement("small");
+    date.textContent = new Date(item.date).toLocaleString();
 
-            const decision =
-                item.report.analysis?.decision || "No decision";
+    const open = document.createElement("button");
+    open.className = "secondary";
+    open.textContent = "Open Report";
 
-            const date = new Date(item.date).toLocaleString();
+    open.addEventListener("click", () => {
+      renderReport(item.report);
+      $("importStatus").textContent = "Saved report loaded.";
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
 
-            const title = document.createElement("div");
-            title.textContent = instrument + " · " + decision;
-
-            const dateElement = document.createElement("small");
-            dateElement.textContent = date;
-            dateElement.style.color = "var(--muted)";
-
-            const button = document.createElement("button");
-            button.className = "secondary";
-            button.textContent = "Open Report";
-
-            button.addEventListener("click", () => {
-                displayReport(item.report);
-                $("reportStatus").textContent =
-                    "Loaded saved report from local browser history.";
-                window.scrollTo({ top: 0, behavior: "smooth" });
-            });
-
-            div.append(title, dateElement, document.createElement("br"), button);
-            output.appendChild(div);
-        });
-    } catch {
-        output.textContent = "Could not read local history.";
-    }
+    div.append(title, date, document.createElement("br"), open);
+    container.appendChild(div);
+  });
 }
 
-$("clearHistoryButton").addEventListener("click", () => {
-    if (!confirm("Delete all analysis history saved in this browser?")) {
-        return;
-    }
+$("previewButton").addEventListener("click", () => {
+  const file = $("chartFile").files[0];
 
-    localStorage.removeItem("infinityTradingHistory");
-    renderHistory();
+  if (!file) {
+    $("uploadStatus").textContent = "Select a screenshot first.";
+    return;
+  }
+
+  if (!file.type.startsWith("image/")) {
+    $("uploadStatus").textContent = "Select a valid image.";
+    return;
+  }
+
+  if (file.size > 10 * 1024 * 1024) {
+    $("uploadStatus").textContent = "Image must be smaller than 10 MB.";
+    return;
+  }
+
+  if (previewUrl) URL.revokeObjectURL(previewUrl);
+
+  previewUrl = URL.createObjectURL(file);
+  $("chartPreview").src = previewUrl;
+  $("chartPreview").style.display = "block";
+
+  $("uploadStatus").textContent =
+    "Screenshot preview ready. No AI analysis has been performed.";
 });
 
-window.addEventListener("beforeprint", () => {
-    document.title = "Infinity AI Trading Report";
+$("importButton").addEventListener("click", async () => {
+  const file = $("jsonFile").files[0];
+
+  if (!file) {
+    $("importStatus").textContent = "Choose a JSON report first.";
+    return;
+  }
+
+  if (file.size > 1024 * 1024) {
+    $("importStatus").textContent = "JSON file must be smaller than 1 MB.";
+    return;
+  }
+
+  try {
+    const report = JSON.parse(await file.text());
+    validateReport(report);
+    renderReport(report);
+    saveHistory(report);
+    $("importStatus").textContent =
+      "Report imported successfully. Basic structure checks passed.";
+  } catch (error) {
+    $("importStatus").textContent = "Import failed: " + error.message;
+  }
+});
+
+$("exportButton").addEventListener("click", () => {
+  if (!currentReport) {
+    $("importStatus").textContent = "Import a report first.";
+    return;
+  }
+
+  const blob = new Blob(
+    [JSON.stringify(currentReport, null, 2)],
+    { type: "application/json" }
+  );
+
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = "infinity-ai-trading-report.json";
+  link.click();
+
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+});
+
+$("pdfButton").addEventListener("click", () => {
+  if (!currentReport) {
+    $("importStatus").textContent =
+      "Import a report before creating a PDF.";
+    return;
+  }
+
+  window.print();
+});
+
+$("clearHistoryButton").addEventListener("click", () => {
+  if (!confirm("Delete saved analysis history from this browser?")) return;
+
+  localStorage.removeItem("infinityTradingHistory");
+  renderHistory();
 });
 
 renderHistory();
-updateOverview();
 </script>
-
-<style>
-@media print {
-    body {
-        background: white !important;
-        color: black !important;
-    }
-
-    header, footer, .notice, .grid,
-    #clearHistoryButton, .description {
-        display: none !important;
-    }
-
-    .container {
-        margin: 0;
-        max-width: none;
-    }
-
-    .card {
-        background: white !important;
-        color: black !important;
-        border: 1px solid #ccc;
-        break-inside: avoid;
-    }
-
-    #reportOutput {
-        color: black !important;
-    }
-}
-</style>
 
 </body>
 </html>
