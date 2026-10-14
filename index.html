@@ -1,195 +1,663 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Infinity AI Trading</title>
+<title>Infinity AI Trading</title>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<style>
+:root {
+    --bg: #080d19;
+    --panel: #111a2b;
+    --border: #263650;
+    --text: #f1f5f9;
+    --muted: #94a3b8;
+    --blue: #38bdf8;
+    --green: #34d399;
+    --red: #fb7185;
+}
 
-        body {
-            font-family: Arial, sans-serif;
-            background: #0b1120;
-            color: #ffffff;
-            min-height: 100vh;
-        }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-        header {
-            padding: 24px 8%;
-            border-bottom: 1px solid #263247;
-        }
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Arial, sans-serif;
+}
 
-        header h1 {
-            color: #38bdf8;
-            font-size: 28px;
-        }
+header {
+    padding: 22px 5%;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
 
-        header p {
-            color: #94a3b8;
-            margin-top: 8px;
-        }
+.logo {
+    color: var(--blue);
+    font-size: 25px;
+    font-weight: bold;
+}
 
-        main {
-            max-width: 1000px;
-            margin: 70px auto;
-            padding: 20px;
-        }
+.subtitle {
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 6px;
+}
 
-        .hero {
-            text-align: center;
-            margin-bottom: 40px;
-        }
+.badge {
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 9px 13px;
+    color: var(--green);
+    font-size: 12px;
+}
 
-        .hero h2 {
-            font-size: 38px;
-            margin-bottom: 16px;
-        }
+.container {
+    max-width: 1200px;
+    margin: 35px auto;
+    padding: 0 20px;
+}
 
-        .hero span {
-            color: #38bdf8;
-        }
+h1 {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
 
-        .hero p {
-            color: #94a3b8;
-            line-height: 1.7;
-        }
+.description {
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 28px;
+}
 
-        .card {
-            background: #111c30;
-            border: 1px solid #263247;
-            border-radius: 16px;
-            padding: 30px;
-        }
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
 
-        .card h3 {
-            margin-bottom: 12px;
-        }
+.card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    margin-bottom: 20px;
+    min-width: 0;
+}
 
-        .card p {
-            color: #94a3b8;
-            margin-bottom: 20px;
-        }
+.card h2 {
+    font-size: 19px;
+    margin-bottom: 18px;
+}
 
-        input {
-            width: 100%;
-            padding: 14px;
-            margin-bottom: 20px;
-            background: #0b1120;
-            color: white;
-            border: 1px solid #334155;
-            border-radius: 8px;
-        }
+label {
+    display: block;
+    color: var(--muted);
+    margin: 16px 0 8px;
+    font-size: 13px;
+}
 
-        button {
-            padding: 13px 22px;
-            background: #0284c7;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 15px;
-        }
+input, select, textarea {
+    width: 100%;
+    padding: 12px;
+    background: var(--bg);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+}
 
-        button:hover {
-            background: #0369a1;
-        }
+input[type="file"] {
+    font-size: 13px;
+}
 
-        #status {
-            margin-top: 18px;
-            color: #38bdf8;
-            overflow-wrap: anywhere;
-        }
+button {
+    border: 0;
+    border-radius: 8px;
+    padding: 12px 16px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 15px;
+}
 
-        footer {
-            text-align: center;
-            padding: 30px;
-            color: #64748b;
-        }
-    </style>
+.primary {
+    background: #0284c7;
+    color: white;
+}
+
+.secondary {
+    background: #263650;
+    color: white;
+}
+
+button:hover {
+    opacity: .88;
+}
+
+#preview {
+    width: 100%;
+    max-height: 350px;
+    object-fit: contain;
+    margin-top: 18px;
+    border-radius: 8px;
+    display: none;
+    background: var(--bg);
+}
+
+.status {
+    color: var(--blue);
+    font-size: 13px;
+    margin-top: 14px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+.notice {
+    border: 1px solid #854d0e;
+    background: #422006;
+    color: #fde68a;
+    border-radius: 9px;
+    padding: 14px;
+    line-height: 1.6;
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+.metric {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 16px;
+    border-radius: 10px;
+}
+
+.metric small {
+    color: var(--muted);
+}
+
+.metric strong {
+    display: block;
+    font-size: 19px;
+    margin-top: 9px;
+}
+
+.metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+#reportOutput {
+    white-space: pre-wrap;
+    line-height: 1.7;
+    color: var(--muted);
+    overflow-wrap: anywhere;
+}
+
+.history-item {
+    border-bottom: 1px solid var(--border);
+    padding: 13px 0;
+    line-height: 1.6;
+}
+
+.history-item button {
+    margin-top: 5px;
+}
+
+footer {
+    text-align: center;
+    color: var(--muted);
+    padding: 30px 15px;
+    font-size: 12px;
+}
+
+@media (max-width: 750px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .metrics {
+        grid-template-columns: 1fr;
+    }
+
+    h1 {
+        font-size: 25px;
+    }
+}
+</style>
 </head>
 
 <body>
 
-    <header>
-        <h1>INFINITY AI TRADING</h1>
-        <p>AI-Assisted Technical Market Analysis</p>
-    </header>
+<header>
+    <div>
+        <div class="logo">INFINITY AI TRADING</div>
+        <div class="subtitle">AI-Assisted Technical Market Analysis</div>
+    </div>
+    <div class="badge">● PROTOTYPE V2</div>
+</header>
 
-    <main>
-        <section class="hero">
-            <h2>Welcome to <span>Infinity AI</span></h2>
-            <p>
-                Upload your TradingView chart and prepare
-                structured market analysis reports.
-            </p>
+<main class="container">
+
+    <h1>Trading Analysis Workspace</h1>
+    <p class="description">
+        Upload your TradingView screenshot, organize your chart
+        details, and import a completed AI analysis report.
+    </p>
+
+    <div class="notice">
+        <strong>Prototype mode:</strong>
+        This website does not connect to a live market feed or AI
+        model yet. Uploading a screenshot does not automatically
+        analyze the market. Never treat an unverified report as a trade signal.
+    </div>
+
+    <div class="grid">
+
+        <section class="card">
+            <h2>📸 Chart Upload</h2>
+
+            <label for="chartFile">Select TradingView screenshot</label>
+            <input id="chartFile" type="file" accept="image/*">
+
+            <label for="instrument">Instrument</label>
+            <select id="instrument">
+                <option value="EURUSD">EUR/USD</option>
+                <option value="GBPUSD">GBP/USD</option>
+                <option value="USDJPY">USD/JPY</option>
+                <option value="XAUUSD">Gold (XAU/USD)</option>
+                <option value="BTCUSD">Bitcoin (BTC/USD)</option>
+                <option value="OTHER">Other</option>
+            </select>
+
+            <label for="timeframe">Chart timeframe</label>
+            <select id="timeframe">
+                <option value="1m">1 minute</option>
+                <option value="5m">5 minutes</option>
+                <option value="15m">15 minutes</option>
+                <option value="30m">30 minutes</option>
+                <option value="45m" selected>45 minutes</option>
+                <option value="1h">1 hour</option>
+                <option value="4h">4 hours</option>
+                <option value="1D">1 day</option>
+            </select>
+
+            <button class="primary" id="previewButton">
+                Preview Chart
+            </button>
+
+            <div id="uploadStatus" class="status" aria-live="polite"></div>
+
+            <img id="preview" alt="Selected TradingView chart preview">
         </section>
 
         <section class="card">
-            <h3>📊 Chart Analysis Workspace</h3>
+            <h2>📊 Analysis Overview</h2>
 
-            <p>
-                Select a TradingView screenshot to begin.
-                AI analysis will be integrated in a later step.
-            </p>
+            <div class="metrics">
+                <div class="metric">
+                    <small>Instrument</small>
+                    <strong id="metricInstrument">EUR/USD</strong>
+                </div>
 
-            <input
-                type="file"
-                id="chartFile"
-                accept="image/*"
-            >
+                <div class="metric">
+                    <small>Timeframe</small>
+                    <strong id="metricTimeframe">45m</strong>
+                </div>
 
-            <button onclick="previewChart()">
-                Upload Chart
+                <div class="metric">
+                    <small>Decision</small>
+                    <strong style="color:var(--muted)">Not analyzed</strong>
+                </div>
+            </div>
+
+            <label for="analysisJson">Import completed AI report (JSON)</label>
+            <input id="analysisJson" type="file" accept=".json,application/json">
+
+            <button class="primary" id="importButton">
+                Import JSON Report
             </button>
 
-            <p id="status"></p>
+            <button class="secondary" id="downloadJsonButton">
+                Export Current Report
+            </button>
 
-            <img
-                id="preview"
-                alt="Selected chart preview"
-                style="display:none; max-width:100%; margin-top:20px; border-radius:8px;"
-            >
+            <button class="secondary" id="downloadPdfButton">
+                Print / Save as PDF
+            </button>
+
+            <div id="reportStatus" class="status" aria-live="polite"></div>
         </section>
-    </main>
 
-    <footer>
-        INFINITY AI TRADING · Version 1.0
-    </footer>
+    </div>
 
-    <script>
-        function previewChart() {
-            const input = document.getElementById("chartFile");
-            const status = document.getElementById("status");
-            const preview = document.getElementById("preview");
+    <section class="card">
+        <h2>🧠 Analysis Report</h2>
+        <div id="reportOutput">
+            No analysis report imported yet.
 
-            const file = input.files[0];
+            Once a completed report is imported, its contents
+            will appear here.
+        </div>
+    </section>
 
-            if (!file) {
-                status.textContent = "Please select a chart screenshot first.";
-                preview.style.display = "none";
-                return;
-            }
+    <section class="card">
+        <h2>🕘 Recent Analysis History</h2>
+        <p class="description">
+            Reports saved in this browser on this device.
+        </p>
+        <div id="historyOutput"></div>
+        <button class="secondary" id="clearHistoryButton">
+            Clear Local History
+        </button>
+    </section>
 
-            if (!file.type.startsWith("image/")) {
-                status.textContent = "Please select a valid image.";
-                preview.style.display = "none";
-                return;
-            }
+</main>
 
-            preview.src = URL.createObjectURL(file);
-            preview.style.display = "block";
+<footer>
+    INFINITY AI TRADING · Educational prototype ·
+    Not a live trading or execution system
+</footer>
 
-            status.textContent =
-                "Chart selected successfully: " + file.name +
-                ". AI analysis is not connected yet.";
+<script>
+"use strict";
+
+let currentReport = null;
+let currentImageUrl = null;
+
+const $ = id => document.getElementById(id);
+
+function updateOverview() {
+    $("metricInstrument").textContent = $("instrument").value;
+    $("metricTimeframe").textContent = $("timeframe").value;
+}
+
+$("instrument").addEventListener("change", updateOverview);
+$("timeframe").addEventListener("change", updateOverview);
+
+$("previewButton").addEventListener("click", () => {
+    const file = $("chartFile").files[0];
+
+    if (!file) {
+        $("uploadStatus").textContent =
+            "Please select a chart screenshot first.";
+        return;
+    }
+
+    if (!file.type.startsWith("image/")) {
+        $("uploadStatus").textContent =
+            "Please select a valid image file.";
+        return;
+    }
+
+    if (file.size > 10 * 1024 * 1024) {
+        $("uploadStatus").textContent =
+            "Please select an image smaller than 10 MB.";
+        return;
+    }
+
+    if (currentImageUrl) {
+        URL.revokeObjectURL(currentImageUrl);
+    }
+
+    currentImageUrl = URL.createObjectURL(file);
+    $("preview").src = currentImageUrl;
+    $("preview").style.display = "block";
+
+    $("uploadStatus").textContent =
+        "Preview ready: " + file.name +
+        ". This image has not been analyzed by AI.";
+
+    updateOverview();
+});
+
+function validateReport(report) {
+    if (!report || typeof report !== "object" || Array.isArray(report)) {
+        throw new Error("JSON must contain one report object.");
+    }
+
+    if (!report.analysis || typeof report.analysis !== "object") {
+        throw new Error("Required analysis section is missing.");
+    }
+
+    const allowed = [
+        "BULLISH_BIAS",
+        "BEARISH_BIAS",
+        "WAIT_FOR_CONFIRMATION",
+        "INSUFFICIENT_DATA"
+    ];
+
+    if (
+        report.analysis.decision &&
+        !allowed.includes(report.analysis.decision)
+    ) {
+        throw new Error("Unknown decision label.");
+    }
+
+    for (const key of ["support_zones", "resistance_zones", "indicators"]) {
+        if (report[key] !== undefined && !Array.isArray(report[key])) {
+            throw new Error(key + " must be an array.");
         }
-    </script>
+    }
+
+    return true;
+}
+
+function displayReport(report) {
+    const safeText = JSON.stringify(report, null, 2);
+    $("reportOutput").textContent = safeText;
+
+    const decision = report.analysis?.decision || "Not specified";
+    const instrument = report.analysis?.instrument || "Unknown";
+    const timeframe = report.analysis?.timeframe || "Unknown";
+
+    $("metricInstrument").textContent = instrument;
+    $("metricTimeframe").textContent = timeframe;
+
+    const decisionElement = $("metricInstrument")
+        .parentElement.parentElement.children[2].querySelector("strong");
+
+    decisionElement.textContent = decision;
+
+    currentReport = report;
+}
+
+$("importButton").addEventListener("click", async () => {
+    const file = $("analysisJson").files[0];
+
+    if (!file) {
+        $("reportStatus").textContent = "Please select a JSON file.";
+        return;
+    }
+
+    if (file.size > 1024 * 1024) {
+        $("reportStatus").textContent = "JSON file must be smaller than 1 MB.";
+        return;
+    }
+
+    try {
+        const report = JSON.parse(await file.text());
+        validateReport(report);
+        displayReport(report);
+        saveToHistory(report);
+
+        $("reportStatus").textContent =
+            "JSON imported and basic structure checks passed.";
+    } catch (error) {
+        $("reportStatus").textContent =
+            "Import failed: " + error.message;
+    }
+});
+
+$("downloadJsonButton").addEventListener("click", () => {
+    if (!currentReport) {
+        $("reportStatus").textContent =
+            "Import an AI report before exporting JSON.";
+        return;
+    }
+
+    downloadFile(
+        JSON.stringify(currentReport, null, 2),
+        "infinity-trading-report.json",
+        "application/json"
+    );
+});
+
+function downloadFile(content, filename, mimeType) {
+    const blob = new Blob([content], { type: mimeType });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+
+    a.href = url;
+    a.download = filename;
+    a.click();
+
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+$("downloadPdfButton").addEventListener("click", () => {
+    if (!currentReport) {
+        $("reportStatus").textContent =
+            "Import a completed report before creating a PDF.";
+        return;
+    }
+
+    window.print();
+});
+
+function saveToHistory(report) {
+    try {
+        let history = JSON.parse(
+            localStorage.getItem("infinityTradingHistory") || "[]"
+        );
+
+        history.unshift({
+            date: new Date().toISOString(),
+            report: report
+        });
+
+        history = history.slice(0, 20);
+
+        localStorage.setItem(
+            "infinityTradingHistory",
+            JSON.stringify(history)
+        );
+
+        renderHistory();
+    } catch (error) {
+        $("reportStatus").textContent =
+            "Report loaded, but browser history could not be saved.";
+    }
+}
+
+function renderHistory() {
+    const output = $("historyOutput");
+
+    try {
+        const history = JSON.parse(
+            localStorage.getItem("infinityTradingHistory") || "[]"
+        );
+
+        output.replaceChildren();
+
+        if (!history.length) {
+            output.textContent = "No saved reports yet.";
+            return;
+        }
+
+        history.forEach((item, index) => {
+            const div = document.createElement("div");
+            div.className = "history-item";
+
+            const instrument =
+                item.report.analysis?.instrument || "Unknown instrument";
+
+            const decision =
+                item.report.analysis?.decision || "No decision";
+
+            const date = new Date(item.date).toLocaleString();
+
+            const title = document.createElement("div");
+            title.textContent = instrument + " · " + decision;
+
+            const dateElement = document.createElement("small");
+            dateElement.textContent = date;
+            dateElement.style.color = "var(--muted)";
+
+            const button = document.createElement("button");
+            button.className = "secondary";
+            button.textContent = "Open Report";
+
+            button.addEventListener("click", () => {
+                displayReport(item.report);
+                $("reportStatus").textContent =
+                    "Loaded saved report from local browser history.";
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            });
+
+            div.append(title, dateElement, document.createElement("br"), button);
+            output.appendChild(div);
+        });
+    } catch {
+        output.textContent = "Could not read local history.";
+    }
+}
+
+$("clearHistoryButton").addEventListener("click", () => {
+    if (!confirm("Delete all analysis history saved in this browser?")) {
+        return;
+    }
+
+    localStorage.removeItem("infinityTradingHistory");
+    renderHistory();
+});
+
+window.addEventListener("beforeprint", () => {
+    document.title = "Infinity AI Trading Report";
+});
+
+renderHistory();
+updateOverview();
+</script>
+
+<style>
+@media print {
+    body {
+        background: white !important;
+        color: black !important;
+    }
+
+    header, footer, .notice, .grid,
+    #clearHistoryButton, .description {
+        display: none !important;
+    }
+
+    .container {
+        margin: 0;
+        max-width: none;
+    }
+
+    .card {
+        background: white !important;
+        color: black !important;
+        border: 1px solid #ccc;
+        break-inside: avoid;
+    }
+
+    #reportOutput {
+        color: black !important;
+    }
+}
+</style>
 
 </body>
 </html>
